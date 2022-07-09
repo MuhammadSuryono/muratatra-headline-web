@@ -1,12 +1,15 @@
 <template>
   <div>
+    <TopHeader />
     <Nuxt />
   </div>
 </template>
 
 <script>
+import TopHeader from '../components/layouts/TopHeader.vue';
 export default {
-  name: "payment",
+    name: "payment",
+    components: { TopHeader }
 };
 </script>
 
