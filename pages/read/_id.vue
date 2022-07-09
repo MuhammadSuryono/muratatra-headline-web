@@ -13,6 +13,9 @@
     <div class="single-news">
       <div class="container-fluid">
         <div class="row">
+          <div class="col-md-8" v-if="content === null">
+            Konten tidak tersedia
+          </div>
           <div class="col-md-8" v-if="content !== null">
             <div class="sn-img">
               <img :src="content.image" />
@@ -35,7 +38,7 @@
 
 <script>
 export default {
-  name: "_id",
+  name: "read-news",
   data() {
     return {
       content: null
@@ -43,9 +46,13 @@ export default {
   },
   methods: {
     async getContent() {
-      let req = await this.$api.get(`news/${this.$route.params.id}`)
-      this.content = req.data.data
-      console.log(req.data.data)
+      try {
+        let req = await this.$api.get(`news/${this.$route.params.id}`)
+        this.content = req.data.data
+        console.log(req.data.data)
+      } catch (e) {
+        console.warn(e)
+      }
     }
   },
   async mounted() {

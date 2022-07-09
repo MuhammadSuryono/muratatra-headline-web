@@ -25,32 +25,32 @@ export default {
       mainBanner: {
         id: 0,
         title: "Default Content Banner",
-        image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+        image: "https://dinkes.dairikab.go.id/wp-content/uploads/sites/12/2022/03/default-img.gif",
         last_update: "2022-06-07 10:09:00"
       },
       subTopNews: [
         {
           id: 0,
           title: "Default Content Banner",
-          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          image: "https://dinkes.dairikab.go.id/wp-content/uploads/sites/12/2022/03/default-img.gif",
           last_update: "2022-06-07 10:09:00"
         },
         {
           id: 0,
           title: "Default Content Banner",
-          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          image: "https://dinkes.dairikab.go.id/wp-content/uploads/sites/12/2022/03/default-img.gif",
           last_update: "2022-06-07 10:09:00"
         },
         {
           id: 0,
           title: "Default Content Banner",
-          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          image: "https://dinkes.dairikab.go.id/wp-content/uploads/sites/12/2022/03/default-img.gif",
           last_update: "2022-06-07 10:09:00"
         },
         {
           id: 0,
           title: "Default Content Banner",
-          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          image: "https://dinkes.dairikab.go.id/wp-content/uploads/sites/12/2022/03/default-img.gif",
           last_update: "2022-06-07 10:09:00"
         }
       ],
