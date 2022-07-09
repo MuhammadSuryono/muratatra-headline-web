@@ -3,61 +3,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 tn-left">
-          <div class="tn-img">
-            <img src="img/top-news-1.jpg" />
-            <div class="tn-content">
-              <div class="tn-content-inner">
-                <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
-                <a class="tn-title" href="">Lorem ipsum dolor sit amet adipiscing elit</a>
-              </div>
-            </div>
-          </div>
+          <ImageContentPost :path="`read/${mainBanner.id}`" :image="mainBanner.image" styles-image="height: 505px; object-fit: cover" :title="mainBanner.title" :last-update="mainBanner.last_update" />
         </div>
         <div class="col-md-6 tn-right">
           <div class="row">
-            <div class="col-md-6">
-              <div class="tn-img">
-                <img src="img/top-news-2.jpg" />
-                <div class="tn-content">
-                  <div class="tn-content-inner">
-                    <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
-                    <a class="tn-title" href="">Integer faucibus pharetra odio</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="tn-img">
-                <img src="img/top-news-3.jpg" />
-                <div class="tn-content">
-                  <div class="tn-content-inner">
-                    <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
-                    <a class="tn-title" href="">Nulla vitae pharetra ligula</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="tn-img">
-                <img src="img/top-news-4.jpg" />
-                <div class="tn-content">
-                  <div class="tn-content-inner">
-                    <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
-                    <a class="tn-title" href="">Ut ac euismod tellus a blandit</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="tn-img">
-                <img src="img/top-news-5.jpg" />
-                <div class="tn-content">
-                  <div class="tn-content-inner">
-                    <a class="tn-date" href=""><i class="far fa-clock"></i>05-Feb-2020</a>
-                    <a class="tn-title" href="">Cras ac egestas sem nec euismod</a>
-                  </div>
-                </div>
-              </div>
+            <div class="col-md-6" v-for="(sub, iSub) in subTopNews" :key="iSub" >
+              <ImageContentPost :path="`read/${sub.id}`" :image="sub.image" styles-image="height: 239px; object-fit: cover" :title="sub.title" :last-update="sub.last_update" />
             </div>
           </div>
         </div>
@@ -68,7 +19,67 @@
 
 <script>
 export default {
-  name: "TopNews"
+  name: "TopNews",
+  data() {
+    return {
+      mainBanner: {
+        id: 0,
+        title: "Default Content Banner",
+        image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+        last_update: "2022-06-07 10:09:00"
+      },
+      subTopNews: [
+        {
+          id: 0,
+          title: "Default Content Banner",
+          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          last_update: "2022-06-07 10:09:00"
+        },
+        {
+          id: 0,
+          title: "Default Content Banner",
+          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          last_update: "2022-06-07 10:09:00"
+        },
+        {
+          id: 0,
+          title: "Default Content Banner",
+          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          last_update: "2022-06-07 10:09:00"
+        },
+        {
+          id: 0,
+          title: "Default Content Banner",
+          image: "https://blackmantkd.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+          last_update: "2022-06-07 10:09:00"
+        }
+      ],
+    }
+  },
+  methods: {
+    getTopNews: async function() {
+      try {
+        let req = await this.$api.get('news/content/top-news?limit=5')
+        let article = req.data.data.articles
+        if (article.length > 0) {
+          this.mainBanner = article[0]
+        }
+
+        if (article.length > 1) {
+          article.forEach((item, index) => {
+            if (index !== 0) {
+              this.subTopNews[index - 1] = item
+            }
+          })
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  },
+  async mounted() {
+    await this.getTopNews()
+  }
 }
 </script>
 

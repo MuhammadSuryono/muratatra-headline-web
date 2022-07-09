@@ -9,10 +9,8 @@
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav m-auto">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="#" class="nav-item nav-link">Sports</a>
-            <a href="#" class="nav-item nav-link">Tech</a>
-            <a href="#" class="nav-item nav-link">Fashion</a>
+            <NuxtLink to="/" class="nav-item nav-link active">Home</NuxtLink>
+            <NuxtLink :to="{path: `/category/${category.slug}`, params: {slug: category.slug}}" class="nav-item nav-link" v-for="(category, iCategory) in categoryMenu" :key="iCategory">{{category.category_name}}</NuxtLink>
             <div class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
               <div class="dropdown-menu">
@@ -31,7 +29,21 @@
 
 <script>
 export default {
-  name: "HeaderMenu"
+  name: "HeaderMenu",
+  data() {
+    return {
+      categoryMenu: []
+    }
+  },
+  methods: {
+    getCategoryMenu: async function() {
+      let req = await this.$api.get('category/menu?is_menu=true')
+      this.categoryMenu = req.data.data
+    }
+  },
+  async mounted() {
+    await this.getCategoryMenu()
+  }
 }
 </script>
 

@@ -5,7 +5,7 @@
         <div class="col-lg-3 col-md-4">
           <div class="logo">
             <a href="">
-              <img src="/sumeksco.jpg" alt="Logo">
+              <img src="/sumeksco.png" alt="Logo">
             </a>
           </div>
         </div>
