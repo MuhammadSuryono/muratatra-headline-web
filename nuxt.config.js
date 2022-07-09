@@ -10,8 +10,8 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Muratara Headline' },
-      { hid: 'stripe', src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js', defer: true},
-      { hid: 'stripe', src: 'https://code.jquery.com/jquery-3.4.1.min.js', defer: true},
+      // { hid: 'stripe', src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js', defer: true},
+      // { hid: 'stripe', src: 'https://code.jquery.com/jquery-3.4.1.min.js', defer: true},
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
@@ -35,6 +35,11 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '@/static/js/jquery.min.js', type:'text/javascript', mode: 'client'},
+    { src: '@/static/js/jquery-ui.min.js', type:'text/javascript', mode: 'client'},
+    { src: '@/static/js/bootstrap.min.js', type:'text/javascript', mode: 'client'},
+    { src: '@/static/js/jquery.min.js', type:'text/javascript', mode: 'client'},
+    { src: '@/static/js/jquery-ui.min.js', type:'text/javascript', mode: 'client'},
     { src: '@/static/css/lib/easing/easing.min.js', mode: 'client'},
     { src: '@/static/css/lib/slick.min.js', mode: 'client'},
     { src: '@/static/js/main.js', mode: 'client'},

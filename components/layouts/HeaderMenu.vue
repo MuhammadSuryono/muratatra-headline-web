@@ -37,8 +37,12 @@ export default {
   },
   methods: {
     getCategoryMenu: async function() {
-      let req = await this.$api.get('category/menu?is_menu=true')
-      this.categoryMenu = req.data.data
+      try {
+        let req = await this.$api.get('category/menu?is_menu=true')
+        this.categoryMenu = req.data.data
+      } catch (e) {
+        console.warn(e)
+      }
     }
   },
   async mounted() {

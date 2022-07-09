@@ -40,6 +40,25 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalConfirmationLabel">Delete Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you delete <span class="font-weight-bold text-danger text-uppercase"></span> data?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger btn-sm" >Yes, Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Main News End-->
   </div>
 </template>
@@ -124,8 +143,17 @@ export default {
     VueSlickCarousel
   },
   methods: {
+    loadModal: async function() {
+      try {
+        $('#modalConfirmation').modal('show')
+      }catch (e) {
+        console.log("Error", e)
+      }
+    }
   },
   async mounted() {
+    // $('#exampleModal').modal('show')
+    await this.loadModal()
   }
 }
 </script>
