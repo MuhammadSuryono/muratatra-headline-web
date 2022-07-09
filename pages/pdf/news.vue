@@ -20,7 +20,7 @@
             :key="iMenuList"
             :class="{ active: isActive(menuList.id) }"
             @click.prevent="setActiveItem(menuList.id)"
-            >{{ menuList.title }}</a
+          >{{ menuList.title }}</a
           >
         </div>
       </nav>
@@ -71,9 +71,9 @@
 </template>
 
 <script>
-import NewsCard from "../components/home/NewsCard.vue";
+import NewsCard from "@/components/home/NewsCard";
 export default {
-  name: "newsListPage",
+  name: "pdf-news",
   data() {
     return {
       tabLists: [

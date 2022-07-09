@@ -22,7 +22,7 @@
         <div class="image">
           <img width="40%" height="300px" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;" src="https://i.pinimg.com/736x/6a/a1/45/6aa145b656bd3efc77ac085ae8ee6fbf--journal-news-the-journal.jpg" />
           <NuxtLink to="#" class="btn btn-success btn-sm mt-2 w-50">Baca Edisi Hari Ini</NuxtLink>
-          <NuxtLink to="#" class="btn btn-outline-secondary btn-sm mt-2 w-50">Baca Edisi Hari Ini</NuxtLink>
+          <NuxtLink to="/pdf/news" class="btn btn-outline-secondary btn-sm mt-2 w-50">Baca Edisi Lainnya</NuxtLink>
         </div>
       </div>
 
