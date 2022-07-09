@@ -79,7 +79,20 @@
 
     <div class="my-5 d-block text-center">
       <small>No rek Mandiri:</small>
-      <h4 class="text-info">5833736282927622</h4>
+      <h4 class="text-info">
+        {{ noRek }}
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm border-0"
+          data-container="body"
+          data-toggle="popover"
+          data-placement="top"
+          @click="copyText"
+          data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+        >
+          <i class="fas fa-copy"></i>
+        </button>
+      </h4>
     </div>
 
     <div class="mt-5">
@@ -224,6 +237,7 @@ export default {
       evidence: "",
       subscription: {},
       defaultImageLabel: "Choose file...",
+      noRek: 5833736282927622,
       subscriptionTabs: [
         {
           id: "monthly",
@@ -252,18 +266,25 @@ export default {
         form.append("dest_rekening", destRekening);
         form.append("evidence", evidence);
 
-
         const response = await this.$api.post(
           `/api/v1/subscriptions/${this.subscription.id}/confirm`,
           form
         );
+
+        this.hideModal();
       } catch (error) {
         console.log(error);
       }
     },
+    async copyText() {
+      try {
+        await navigator.clipboard.writeText(this.noRek);
+        alert("Copied");
+      } catch ($e) {
+        alert("Cannot copy");
+      }
+    },
     hideModal() {
-              const { name, senderRekening, price, destRekening, evidence } = this;
-      $(name).reset()
       $("#paymentModal").modal("hide");
     },
     isShowModal() {
