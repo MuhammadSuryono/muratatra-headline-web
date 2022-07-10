@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-5 w-50">
+  <div class="container my-5 col-md-6 col-sm-12">
     <h4>Rincian Pembayaran</h4>
     <p>Berikut pilihan paket yang tersedia</p>
 
@@ -26,9 +26,9 @@
           :class="{ 'active show': isActive(subscription.id) }"
         >
           <div class="card w-100 mt-3">
-            <div class="card-header py-5 bg-info-200">
+            <div class="card-header py-md-4 bg-info-200">
               <div
-                class="container d-flex justify-content-between align-items-center"
+                class="container d-sm-block d-md-flex justify-content-between align-items-center"
               >
                 <h5>{{ subscription.title }}</h5>
                 <div>
