@@ -124,6 +124,7 @@
     <div
       class="modal fade"
       id="paymentModal"
+      ref="paymentModal"
       tabindex="-1"
       aria-labelledby="paymentModalLabel"
       aria-hidden="true"
@@ -230,7 +231,7 @@ export default {
   layout: "payment",
   data() {
     return {
-      name: "wew",
+      name: "",
       senderRekening: "",
       price: "",
       destRekening: "",
@@ -253,6 +254,8 @@ export default {
   },
   mounted() {
     this.setActiveSubscription(this.activeItem);
+
+    $(this.$refs.paymentModal).on("hidden.bs.modal", this.resetForm)
   },
   methods: {
     async submitConfirmPayment() {
@@ -285,7 +288,16 @@ export default {
       }
     },
     hideModal() {
+      this.resetForm()
       $("#paymentModal").modal("hide");
+    },
+    resetForm() {
+      this.name = ""
+      this.senderRekening = ""
+      this.price = ""
+      this.destRekening = ""
+      this.evidence = ""
+      this.defaultImageLabel = "Choose file..."
     },
     isShowModal() {
       $("#paymentModal").modal("show");
