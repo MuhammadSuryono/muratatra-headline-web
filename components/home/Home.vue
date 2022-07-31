@@ -2,26 +2,6 @@
   <div>
     <TopNews />
 
-<!--    <div class="cat-news">-->
-<!--      <div class="container-fluid">-->
-<!--        <div class="row">-->
-<!--          <div class="col-sm-12" :class="{'col-lg-12 col-md-12': dataSlick.length === 1, 'col-lg-6 col-md-6': dataSlick.length > 1}" v-for="(slick, iSlick) in dataSlick" :key="iSlick">-->
-<!--            <h2><i class="fas fa-align-justify"></i>{{slick.category_name}}</h2>-->
-<!--            <VueSlickCarousel v-bind="settingSlick">-->
-<!--              <div class="cn-img mr-2" v-for="(data, iData) in slick.data" :key="iData">-->
-<!--                <img :src="data.image" style="height: 510px;width:100%;object-fit: cover" />-->
-<!--                <div class="cn-content">-->
-<!--                  <div class="cn-content-inner">-->
-<!--                    <a class="cn-date" href=""><i class="far fa-clock"></i>{{data.last_update}}</a>-->
-<!--                    <a class="cn-title" href="">{{data.title}}</a>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </VueSlickCarousel>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
 
     <!-- Main News Start-->
     <div class="main-news">
@@ -36,25 +16,6 @@
 
           <div class="col-md-4">
             <SidebarRight />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="modalConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalConfirmationLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalConfirmationLabel">Delete Confirmation</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            Are you sure you delete <span class="font-weight-bold text-danger text-uppercase"></span> data?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark btn-sm" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger btn-sm" >Yes, Delete</button>
           </div>
         </div>
       </div>
@@ -153,7 +114,6 @@ export default {
   },
   async mounted() {
     // $('#exampleModal').modal('show')
-    await this.loadModal()
   }
 }
 </script>

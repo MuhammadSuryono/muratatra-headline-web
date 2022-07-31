@@ -5,7 +5,7 @@
         <h2><i class="fas fa-align-justify"></i>Kategori</h2>
         <div class="category">
           <ul class="fa-ul">
-            <li v-for="(category, iCategory) in categories" :key="iCategory"><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><NuxtLink :to="`category/${category.slug}`">{{category.category_name}}</NuxtLink></li>
+            <li v-for="(category, iCategory) in categories" :key="iCategory"><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><NuxtLink :to="`/category/${category.slug}`">{{category.category_name}}</NuxtLink></li>
           </ul>
         </div>
       </div>
@@ -26,26 +26,7 @@
         </div>
       </div>
 
-      <div class="sidebar-widget">
-        <h2><i class="fas fa-align-justify"></i>Ads 1 column</h2>
-        <div class="image">
-          <a href=""><img src="https://www.beritabaku.com/wp-content/uploads/2021/08/Desain-tanpa-judul-1-1.jpg" alt="Image"></a>
-        </div>
-      </div>
-
-      <div class="sidebar-widget">
-        <h2><i class="fas fa-align-justify"></i>Ads 2 column</h2>
-        <div class="image">
-          <div class="row">
-            <div class="col-sm-6">
-              <a href=""><img src="https://binus.ac.id/malang/wp-content/uploads/2019/01/1.jpg" alt="Image"></a>
-            </div>
-            <div class="col-sm-6">
-              <a href=""><img src="https://binus.ac.id/malang/wp-content/uploads/2019/01/1.jpg" alt="Image"></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <SidebarAdvertisement />
     </div>
   </div>
 </template>

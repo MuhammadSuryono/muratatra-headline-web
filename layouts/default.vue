@@ -1,9 +1,9 @@
 <template>
   <div>
-    <TopHeader />
+    <TopHeader :company="companyData" />
     <HeaderMenu />
     <Nuxt />
-    <Footer />
+    <Footer :company="companyData" />
   </div>
 </template>
 
@@ -17,6 +17,27 @@ export default {
     Footer,
     HeaderMenu,
     TopHeader
+  },
+  data() {
+    return {
+      companyData: {}
+    }
+  },
+  methods: {
+    company : async function() {
+      try {
+        let resp = await this.$api.get('company')
+        this.companyData = resp.data.data
+      }catch (e) {
+
+      }
+    }
+  },
+  updated() {
+    console.log("Update")
+  },
+  async mounted() {
+    await this.company()
   }
 }
 </script>

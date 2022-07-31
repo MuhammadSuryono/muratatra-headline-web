@@ -9,6 +9,11 @@ export default {
   layout: 'default',
   components: {
     Home
+  },
+  head() {
+    return {
+      title: this.$titleTab('Home')
+    }
   }
 }
 </script>

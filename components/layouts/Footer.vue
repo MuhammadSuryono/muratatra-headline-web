@@ -2,63 +2,32 @@
   <div>
     <!-- Footer Start -->
     <div class="footer">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-widget">
-              <h3 class="title">Useful Links</h3>
-              <ul>
-                <li><a href="#">Pellentesque</a></li>
-                <li><a href="#">Aliquam</a></li>
-                <li><a href="#">Fusce placerat</a></li>
-                <li><a href="#">Nulla hendrerit</a></li>
-                <li><a href="#">Maecenas</a></li>
-              </ul>
-            </div>
-          </div>
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-4 col-md-6">
             <div class="footer-widget">
-              <h3 class="title">Quick Links</h3>
-              <ul>
-                <li><a href="#">Posuere egestas</a></li>
-                <li><a href="#">Sollicitudin</a></li>
-                <li><a href="#">Luctus non</a></li>
-                <li><a href="#">Duis tincidunt</a></li>
-                <li><a href="#">Elementum</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-widget">
-              <h3 class="title">Get in Touch</h3>
+              <h3 class="title">
+                <img :src="company.logo" alt="logo" width="50%" />
+              </h3>
               <div class="contact-info">
-                <p><i class="fa fa-map-marker"></i>123 Terry Lane, New York, USA</p>
-                <p><i class="fa fa-envelope"></i>email@example.com</p>
-                <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                <p><i class="fa fa-map-marker"></i>{{company.address}}</p>
+                <p><i class="fa fa-envelope"></i>{{company.email}}</p>
+                <p><i class="fa fa-phone"></i>{{company.phone}}</p>
                 <div class="social">
-                  <a href=""><i class="fab fa-twitter"></i></a>
-                  <a href=""><i class="fab fa-facebook"></i></a>
-                  <a href=""><i class="fab fa-linkedin"></i></a>
-                  <a href=""><i class="fab fa-instagram"></i></a>
-                  <a href=""><i class="fab fa-youtube"></i></a>
+                  <a target="_blank" :href="social.url_social_media" v-for="(social, iSocial) in company.social_medias" :key="iSocial"><i :class="social.icon"></i></a>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="footer-widget">
-              <h3 class="title">Newsletter</h3>
+              <h3 class="title">Profil</h3>
               <div class="newsletter">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed porta dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra inceptos
+                  {{company.description}}
                 </p>
-                <form>
-                  <input class="form-control" type="email" placeholder="Your email here">
-                  <button class="btn">Submit</button>
-                </form>
               </div>
             </div>
           </div>
@@ -67,18 +36,12 @@
     </div>
     <!-- Footer End -->
 
-
     <!-- Footer Bottom Start -->
     <div class="footer-bottom">
       <div class="container">
         <div class="row">
           <div class="col-md-6 copyright">
-            <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-          </div>
-
-          <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-          <div class="col-md-6 template-by">
-            <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+            <p>Copyright &copy; {{company.company_name}}</p>
           </div>
         </div>
       </div>
@@ -89,7 +52,12 @@
 
 <script>
 export default {
-  name: "Footer"
+  name: "Footer",
+  props: {
+    company: {
+      default: {}
+    }
+  }
 }
 </script>
 

@@ -15,7 +15,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/sumeksco.png' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.jpeg' },
       // Template Stylesheet
       { rel: 'stylesheet', href: '/css/theme.css'},
       // Google Fonts
@@ -61,7 +61,7 @@ export default {
   ],
 
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/v1'
+    baseURL: 'http://127.0.0.1:8000/api/v1',
   },
 
   auth: {

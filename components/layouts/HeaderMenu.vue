@@ -9,17 +9,18 @@
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav m-auto">
-            <NuxtLink to="/" class="nav-item nav-link active">Home</NuxtLink>
-            <NuxtLink :to="{path: `/category/${category.slug}`, params: {slug: category.slug}}" class="nav-item nav-link" v-for="(category, iCategory) in categoryMenu" :key="iCategory">{{category.category_name}}</NuxtLink>
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-              <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Sub Item 1</a>
-                <a href="#" class="dropdown-item">Sub Item 2</a>
+            <NuxtLink to="/" class="nav-item nav-link">Home</NuxtLink>
+            <div v-for="(category, iCategory) in categoryMenu" :key="iCategory">
+              <NuxtLink v-if="category.sub_category.length === 0" :to="{path: `/category/${category.slug}`, params: {slug: category.slug}}" class="nav-item nav-link" >{{category.category_name}}</NuxtLink>
+              <div class="nav-item dropdown" v-if="category.sub_category.length > 0">
+                <NuxtLink :to="{path: `/category/${category.slug}`}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{category.category_name}}</NuxtLink>
+                <div class="dropdown-menu" v-for="(sub, iSub) in category.sub_category" :key="iSub">
+                  <NuxtLink v-for="(sub, iSub) in category.sub_category" :key="iSub" :to="{path: `/category/${sub.slug}`}" class="dropdown-item">{{sub.category_name}}</NuxtLink>
+                </div>
               </div>
             </div>
-            <a href="single-page.html" class="nav-item nav-link">Single Page</a>
-            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+            <NuxtLink to="/iklan" class="nav-item nav-link">Iklan</NuxtLink>
+            <NuxtLink to="/manage-account" class="nav-item nav-link"><i class="fa fa-user"/></NuxtLink>
           </div>
         </div>
       </nav>
@@ -52,5 +53,11 @@ export default {
 </script>
 
 <style scoped>
-
+/* exact link will show the primary color for only the exact matching link */
+a.nuxt-link-exact-active {
+  color: #00c58e;
+  background: rgba(228, 122, 46, .2);
+  border-bottom: 2px solid #E47A2E;
+  transition: none
+}
 </style>

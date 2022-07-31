@@ -1,6 +1,7 @@
 <template>
   <div>
-    <TopHeader />
+    <TopHeader :company="companyData" />
+    <hr/>
     <Nuxt />
   </div>
 </template>
@@ -8,8 +9,29 @@
 <script>
 import TopHeader from '../components/layouts/TopHeader.vue';
 export default {
-    name: "payment",
-    components: { TopHeader }
+  name: "payment",
+  components: { TopHeader },
+  data() {
+    return {
+      companyData: {}
+    }
+  },
+  methods: {
+    company : async function() {
+      try {
+        let resp = await this.$api.get('company')
+        this.companyData = resp.data.data
+      }catch (e) {
+
+      }
+    }
+  },
+  updated() {
+    console.log("Update")
+  },
+  async mounted() {
+    await this.company()
+  }
 };
 </script>
 

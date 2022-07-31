@@ -21,7 +21,7 @@ export default function ({ $axios, app }, inject) {
   })
 
   // Set baseURL to something different
-  // api.setBaseURL('http://localhost:4100/')
+  api.setBaseURL("http://localhost:8000/api/v1")
 
   // Inject to context as $api
   inject('api', api)
