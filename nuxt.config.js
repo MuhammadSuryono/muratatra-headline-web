@@ -44,6 +44,7 @@ export default {
     { src: '@/static/css/lib/slick.min.js', mode: 'client'},
     { src: '@/static/js/main.js', mode: 'client'},
     '@/plugins/axios',
+    '@/plugins/axios2',
     '@/plugins/general'
   ],
 

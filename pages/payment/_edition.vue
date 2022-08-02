@@ -9,14 +9,14 @@
           <a
             class="nav-link"
             href="#"
-            v-for="(tabs, iTabs) in subscriptionTabs"
+            v-for="(tabs, iTabs) in subsTabs"
             :key="iTabs"
             :class="{ active: isActive(tabs.id) }"
             @click.prevent="
               [setActiveItem(tabs.id), setActiveSubscription(tabs.id)]
             "
           >
-            {{ tabs.title }}
+            {{ tabs.packet_name }}
           </a>
         </div>
       </nav>
@@ -226,7 +226,7 @@
 import moment from "moment";
 
 export default {
-  name: "payment",
+  name: "_edition",
   layout: "payment",
   data() {
     return {
@@ -248,13 +248,26 @@ export default {
           title: "Premium 1 Tahun",
         },
       ],
+      subsTabs: [],
+      subsActive: null,
       activeItem: "monthly",
     };
   },
-  mounted() {
+  async mounted() {
+    await this.getDataPacket()
     this.setActiveSubscription(this.activeItem);
   },
   methods: {
+    async getDataPacket() {
+      try {
+        let resp = await this.$api2.get("koran/paket")
+        this.subsTabs = resp.data.data
+        if (this.subsTabs.length > 0) {
+          this.subsActive = this.subsTabs[0].id
+        }
+      } catch (e) {
+      }
+    },
     async submitConfirmPayment() {
       try {
         const { name, senderRekening, price, destRekening, evidence } = this;
