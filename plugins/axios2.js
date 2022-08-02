@@ -21,7 +21,7 @@ export default function ({ $axios, app }, inject) {
   })
 
   // Set baseURL to something different
-  api2.setBaseURL("http://headlineapi.mamangsekayu.site/v1")
+  api2.setBaseURL("https://headlineapi.mamangsekayu.site/v1")
 
   // Inject to context as $api
   inject('api2', api2)
