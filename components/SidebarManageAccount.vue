@@ -4,10 +4,10 @@
       <div class="flex flex-col">
         <div class="flex flex-row items-center">
           <div class="p-4 text-center my-5 rounded-full flex items-center justify-center relative">
-            <img :src="`https://ui-avatars.com/api/?name=Primeskills&background=FF4500&color=fff&rounded=true`" alt="profile" />
+            <img :src="`https://ui-avatars.com/api/?name=${$auth.user.user.name}&background=FF4500&color=fff&rounded=true`" alt="profile" />
           </div>
           <div class="text-center">
-            <h1 class="font-sans font-bold text-base text-customTextColor">Muhammad Suryono</h1>
+            <h1 class="font-sans font-bold text-base text-customTextColor">{{$auth.user.user.name}}</h1>
             <p class="font-sans text-sm text-grey-50">Tidak Berlangganan</p>
             <b class="text-sm text-grey-50"></b>
           </div>
