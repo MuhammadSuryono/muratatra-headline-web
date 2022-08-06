@@ -20,7 +20,7 @@
       <div class="sidebar-widget">
         <h2><i class="fas fa-align-justify"></i>E-Paper</h2>
         <div class="image">
-          <img width="40%" height="300px" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;" src="https://i.pinimg.com/736x/6a/a1/45/6aa145b656bd3efc77ac085ae8ee6fbf--journal-news-the-journal.jpg" />
+          <img width="40%" height="300px" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;" :src="pdfLastUpdate.thumbnail" />
           <NuxtLink to="#" class="btn btn-success btn-sm mt-2 w-50">Baca Edisi Hari Ini</NuxtLink>
           <NuxtLink to="/pdf/news" class="btn btn-outline-secondary btn-sm mt-2 w-50">Baca Edisi Lainnya</NuxtLink>
         </div>
@@ -38,6 +38,9 @@ export default {
     return {
       categories: [],
       tags: [],
+      pdfLastUpdate: {
+        thumbnail: ""
+      }
     }
   },
   methods: {
@@ -45,6 +48,15 @@ export default {
       try {
         let req = await this.$api.get('category/menu?is_menu=false')
         this.categories = req.data.data
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    getLastPdfNewsPaper: async function() {
+      try {
+        let req = await this.$api2.get('koran/pdf/latest')
+        this.pdfLastUpdate = req.data.data
+        if (this.pdfLastUpdate.length > 0) this.pdfLastUpdate = this.pdfLastUpdate[0]
       } catch (e) {
         console.log(e)
       }
@@ -61,6 +73,7 @@ export default {
   async mounted() {
     await this.getCategory()
     await this.getTags()
+    await this.getLastPdfNewsPaper()
   }
 }
 </script>

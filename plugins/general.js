@@ -26,11 +26,16 @@ export default (context, inject) => {
     return `${da} ${mo} ${ye} ${hour}:${minute}:${sec}`;
   }
 
+  const numberFormat = (number, replace = ".") => {
+    return number?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, replace)
+  }
+
   // Inject $hello(msg) in Vue, context and store.
   inject('substring', substring)
   inject('queryUrl', queryUrl)
   inject('titleTab', titleTab)
   inject('convertDate', convertDate)
+  inject('numberFormat', numberFormat)
   // For Nuxt <= 2.12, also add 👇
   // context.$hello = hello
 }

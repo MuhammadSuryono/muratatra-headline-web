@@ -23,6 +23,7 @@
 import PdfViewer from "@/components/pdf/PdfViewer";
 export default {
   name: "read",
+  middleware: 'auth',
   components: {PdfViewer},
   data() {
     return {

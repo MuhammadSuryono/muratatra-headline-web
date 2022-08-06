@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 15rem; margin-right: auto; margin-left: auto; display: block" class="text-center">
+  <div style="width: 15rem; margin-right: auto; margin-left: auto; display: block; border: #3a3a3a solid" class="text-center">
     <img :src="img" width="100%" class="border" />
     <p class="my-4">{{title}}</p>
     <div>

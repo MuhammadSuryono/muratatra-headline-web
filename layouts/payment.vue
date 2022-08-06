@@ -2,7 +2,9 @@
   <div>
     <TopHeader :company="companyData" />
     <hr/>
-    <Nuxt />
+    <div>
+      <Nuxt />
+    </div>
   </div>
 </template>
 

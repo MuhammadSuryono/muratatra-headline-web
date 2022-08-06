@@ -20,7 +20,7 @@
               </div>
             </div>
             <NuxtLink to="/iklan" class="nav-item nav-link">Iklan</NuxtLink>
-            <NuxtLink to="/manage-account" class="nav-item nav-link"><i class="fa fa-user"/></NuxtLink>
+            <NuxtLink :to="$auth.loggedIn ? '/manage-account': '/auth/login'" class="nav-item nav-link"><i class="fa fa-user"/></NuxtLink>
           </div>
         </div>
       </nav>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import  { mapGetters } from 'vuex';
 export default {
   name: "HeaderMenu",
   data() {
@@ -48,7 +49,11 @@ export default {
   },
   async mounted() {
     await this.getCategoryMenu()
-  }
+  },
+
+  computed: {
+    ...mapGetters(['isAuthenticated','loggedInUser'])
+  },
 }
 </script>
 

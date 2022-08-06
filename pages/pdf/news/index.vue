@@ -84,6 +84,7 @@
 import NewsCard from "@/components/home/NewsCard";
 export default {
   name: "pdf-news",
+  middleware: 'auth',
   data() {
     return {
       paginationActive: {},

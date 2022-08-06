@@ -90,9 +90,9 @@ export default {
     rewriteRedirects: false,
 
     redirect: {
-      login: "/login",
-      logout: "/login",
-      home: "/redirect"
+      login: "/auth/login",
+      logout: "/auth/login",
+      home: "/"
     }
   },
 

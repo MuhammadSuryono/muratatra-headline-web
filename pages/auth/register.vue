@@ -24,7 +24,7 @@
                 <label>Password Konfirmasi</label>
                 <input class="form-control" type="password" placeholder="Password Konfirmasi">
               </div>
-              <button class="btn btn-success" style="width: 100%">Masuk</button>
+              <button class="btn btn-success" style="width: 100%">Daftar</button>
             </form>
           </div>
         </div>
