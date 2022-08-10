@@ -76,7 +76,7 @@
 
 <script>
 export default {
-  name: "_editionnew",
+  name: "editionnew",
   middleware: 'auth',
   layout: "payment",
   data() {
@@ -112,12 +112,21 @@ export default {
       this.packetSelectedInformation = this.subsTabs[index]
     },
 
-    createOrder() {
+    async createOrder() {
       this.isSubmit = true
-      this.$store.commit('order/addOrderNumber', "38945345v49534")
-      setTimeout(() => {
-        this.$router.push("checkout")
-      }, 3000)
+      try {
+        let resp = await this.$api2.post("subscription/order", {
+          packet_id: this.packetSelected,
+          customer_id: this.$auth.user.user.id
+        })
+        let data = resp.data.data
+
+        this.$store.commit('order/addOrderNumber', data.order_number)
+        setTimeout(() => {
+          this.$router.push(`checkout?order=${data.order_number}`)
+        }, 3000)
+      } catch (e) {
+      }
     }
   }
 }

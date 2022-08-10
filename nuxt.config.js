@@ -70,7 +70,12 @@ export default {
       local: {
         token: {
           property: 'data.token',
-          global: true
+          global: true,
+          maxAge: 60 * 60 * 24 * 30
+        },
+        refreshToken: {
+          property: 'data.token',
+          maxAge: 60 * 60 * 24 * 30
         },
         user: {
           property: 'data',
@@ -78,6 +83,7 @@ export default {
         },
         endpoints: {
           login: { url: 'customer/login', method: 'post' },
+          refresh: { url: '/auth/refresh', method: 'post' },
           user: { url: 'user', method: 'get' },
           logout: false
         }

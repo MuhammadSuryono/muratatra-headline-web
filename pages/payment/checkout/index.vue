@@ -1,18 +1,19 @@
 <template>
   <div class="container">
     <div class="col-lg-8 col-md-8 col-sm-12" style="margin-left: auto; margin-right: auto; display: block">
-      <h5 class="font-weight-bold">#{{orderNumber}}</h5>
       <div class="card w-100 mt-3">
         <div class="card-header py-5 bg-info-200">
           <div class="container d-flex justify-content-between align-items-center">
-            <h5>Judul</h5>
+            <h5>Paket {{dataOrder.packet_name}}</h5>
             <div>
               <div class="d-flex">
-                <h5></h5>
-                <span class="text-muted">/ </span>
+                <h5>Rp. {{$numberFormat(dataOrder.disc !== '0' ? (dataOrder.total * dataOrder.disc) / 100 : dataOrder.total)}}</h5>
+                <span class="text-muted">/ {{dataOrder.duration}} {{dataOrder.unit}}</span>
               </div>
-              <div>
-                <span class="badge badge-danger-custom"></span>
+              <div class="float-right">
+                <span class="badge badge-danger" v-if="dataOrder.disc !== 0">
+                  <s>Rp. {{$numberFormat(dataOrder.total)}}</s>
+                </span>
               </div>
             </div>
           </div>
@@ -57,7 +58,7 @@
         <div class="text-muted d-flex justify-content-between">
           <h5>Total Pembayaran</h5>
           <h5 class="text-info text-center font-weight-bold">
-              Rp. 50.000
+              Rp. {{$numberFormat(dataOrder.grand_total)}}
           </h5>
         </div>
       </div>
@@ -122,7 +123,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="price">Jumlah Yang Dibayar</label>
+                <label>Jumlah Yang Dibayar</label>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Rp</span>
@@ -151,7 +152,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="image">Bukti Pembayaran</label>
+                <label>Bukti Pembayaran</label>
                 <div class="custom-file mb-3">
                   <input
                     type="file"
@@ -183,7 +184,7 @@ export default {
   layout: "payment",
   data() {
     return {
-      name: "wew",
+      name: "",
       senderRekening: "",
       price: "",
       destRekening: "",
@@ -191,10 +192,23 @@ export default {
       subscription: {},
       defaultImageLabel: "Choose file...",
       noRek: 5833736282927622,
+      fileName: "",
+      file: null,
+      orderNumber: "",
+      dataOrder: {
+        order_number: "",
+        packet_name: "",
+        total: 0,
+        grand_total: 0,
+        disc: 0,
+        duration: 0,
+        unit: "month"
+      }
     }
   },
-  mounted() {
-    console.log(this.orderNumber)
+  async mounted() {
+    this.orderNumber = await this.$queryUrl().order
+    await this.getOrder()
   },
   methods: {
     async copyText() {
@@ -205,32 +219,57 @@ export default {
         alert("Cannot copy");
       }
     },
+    async getOrder() {
+      try {
+        let resp = await this.$api2.get('subscription/order?orderNumber=' + this.orderNumber)
+        this.dataOrder = resp.data.data
+      } catch (e) {
+        console.log(e)
+      }
+    },
     async submitConfirmPayment() {
       try {
-        const { name, senderRekening, price, destRekening, evidence } = this;
+        const { name, senderRekening, price, destRekening, evidence, fileName } = this;
 
-        const form = new FormData();
-        form.append("name", name);
-        form.append("sender_rekening", senderRekening);
-        form.append("price", price);
-        form.append("dest_rekening", destRekening);
-        form.append("evidence", evidence);
-
-        const response = await this.$api.post(
-          `/api/v1/subscriptions/${this.subscription.id}/confirm`,
-          form
+        const response = await this.$api2.post(
+          `/subscription/submit/payment`,
+          {
+            order_number: this.orderNumber,
+            sender: name,
+            total_payment: price,
+            document_transaction: fileName,
+            number_of_rekening_payment: destRekening,
+            number_of_rekening_sender: senderRekening
+          }
         );
+        let dta = response.data
+        if (dta.status !== "OK") {
+          alert(dta.message)
+        } else {
+          alert(dta.message)
+          $('#paymentModal').modal('hide')
+          window.location.href = "/"
+        }
 
-        this.hideModal();
       } catch (error) {
         console.log(error);
       }
     },
-  },
-  computed: {
-    orderNumber() {
-      return this.$store.getters["order/getOrderNumber"]
-    },
+    async selectFile(event) {
+      try {
+        var formData = new FormData();
+        formData.append("file", event.target.files[0]);
+        let resp = await this.$api.post('news/attachment', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        this.fileName = resp.data.data.file_path
+
+      } catch(e) {
+        console.log(e)
+      }
+    }
   },
 }
 </script>
